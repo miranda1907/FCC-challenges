@@ -1,7 +1,7 @@
 function isValidSchema(obj) {
   const roles = ["user", "creator", "moderator", "staff", "admin"];
 
-  return typeof(obj["username"]) === "string" && typeof(obj["posts"]) === "number" && typeof(obj["verified"]) === "boolean" && roles.includes(obj["role"]) && (obj.supporter === undefined || typeof(obj["supporter"]) === "boolean") && (Array.isArray(obj["badges"]) && obj["badges"].every(el => typeof el === "string"));
+  return typeof(obj["username"]) === "string" && typeof(obj["posts"]) === "number" && typeof(obj["verified"]) === "boolean" && roles.includes(obj["role"]) && (obj.supporter === undefined || typeof(obj["supporter"]) === "boolean") && (Array.isArray(obj["badges"]) && obj["badges"].every(el => typeof(el) === "string"));
 }
 
 console.log(isValidSchema({ username: "gill", posts: 12, verified: false, role: "creator", supporter: false, badges: [ "early-adopter", "popular" ] }));
