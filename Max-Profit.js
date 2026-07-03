@@ -1,14 +1,21 @@
 function getMaxProfit(prices, budget) {
-  const buyingPrice= Math.min(...prices);
+  let maxprofit = 0; 
+  let buyingPrice = prices[0]; 
 
-  const sellingPrice=Math.max(...prices);
+  for (let i = 0; i < prices.length; i++) {
+    let shares = Math.floor(budget/buyingPrice);
 
-  const shares = Math.floor(budget/buyingPrice);
+    let profit = shares * (prices[i] - buyingPrice); 
 
-  const profit = (sellingPrice * shares - budget) + budget % buyingPrice;
- 
+    if (maxprofit < profit) {
+      maxprofit = profit;
+    }
 
-  return profit.toFixed(2);
+    if (prices[i] < buyingPrice) {
+      buyingPrice = prices[i];
+    }
+  }
+  return maxprofit.toFixed(2);
 }
 
 console.log(getMaxProfit([5, 6], 50));
